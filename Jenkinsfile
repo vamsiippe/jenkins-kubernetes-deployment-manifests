@@ -7,8 +7,12 @@ pipeline {
   stages {
     stage('Checkout Source') {
       steps {
-        git branch: 'main', credentialsId: 'd4015254-815e-45ac-99f1-9be03a54d08a', url: 'https://github.com/vamsiippe/jenkins-kubernetes-deployment.git'
+        git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/vamsiippe/jenkins-kubernetes-deployment.git'
       }
+    }
+    stage('Initialize'){
+        def dockerHome = tool 'myDocker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
     }
     stage('Build image') {
       steps{
