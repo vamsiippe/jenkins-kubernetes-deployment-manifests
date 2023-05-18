@@ -26,6 +26,14 @@ function App() {
         >
           CI/CD using Jenkins & Argo CD
         </a>
+        <a
+          className="App-link"
+          href="https://google.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Kubernetes & Docker
+        </a>
       </header>
     </div>
   );
