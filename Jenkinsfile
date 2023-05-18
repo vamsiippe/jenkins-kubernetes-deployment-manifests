@@ -45,7 +45,7 @@ pipeline {
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
-                    git clone https://github.com/vamsiippe/${GIT_REPO_NAME} .
+                    git clone https://github.com/vamsiippe/${GIT_REPO_NAME}
                     git config user.email "vamsi.ippe@innovasolutions.com"
                     git config user.name "vamsi.ippe"
                     BUILD_NUMBER=${BUILD_NUMBER}
