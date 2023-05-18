@@ -37,26 +37,23 @@ pipeline {
       }
     }
     
-    stage('Update Deployment File') {
-        environment {
-            GIT_REPO_NAME = "jenkins-kubernetes-deployment-manifests"
-            GIT_USER_NAME = "vamsiippe"
-        }
-        steps {
-            withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-                sh '''
-                    git clone https://github.com/vamsiippe/${GIT_REPO_NAME}
-                    git config user.email "vamsi.ippe@innovasolutions.com"
-                    git config user.name "vamsi.ippe"
-                    BUILD_NUMBER=${BUILD_NUMBER}
-                    cd jenkins-kubernetes-deployment-manifests
-                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" deployment.yml
-                    git add deployment.yml
-                    git commit -m "Update deployment image to version ${BUILD_NUMBER}"
-                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
-                '''
-            }
+    stage('Edit and Push') {
+    steps {
+        script {
+            // Clone the repository
+            git credentialsId: 'github', url: 'https://github.com/vamsiippe/jenkins-kubernetes-deployment-manifests.git'
+
+            // Make the desired changes to the repository files
+            // For example, you can modify a file using shell commands
+            sh 'sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" deployment.yaml'
+            // Commit the changes
+            git add: '.', credentialsId: 'github'
+            git commit: 'Modified deployment.yaml', credentialsId: 'github'
+
+            // Push the changes back to the repository
+            git push: 'origin', credentialsId: 'github'
         }
     }
+}
   }
 }
