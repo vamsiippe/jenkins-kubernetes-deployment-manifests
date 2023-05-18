@@ -41,8 +41,8 @@ pipeline {
                     git config user.email "vamsi.ippe@innovasolutions.com"
                     git config user.name "vamsi.ippe"
                     BUILD_NUMBER=${BUILD_NUMBER}
-                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" deployment.yaml
-                    git add deployment.yaml
+                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" kubernates-deploy/deployment.yaml
+                    git add kubernates-deploy/deployment.yaml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} -f HEAD:main
                 '''
