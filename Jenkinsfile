@@ -28,9 +28,11 @@ pipeline {
            }
       steps{
         script {
-          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push()
-          }
+          sh 'echo passed'
+
+          //docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+          //  dockerImage.push()
+          //}
         }
       }
     }
