@@ -7,16 +7,15 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Lorem Ipsum Doler Sit Amit.
-          Intro to Modern React JS
+        How To Create Jenkins Multibranch Pipeline
         </p>
         <a
           className="App-link"
-          href="https://google.com"
+          href="https://www.lambdatest.com/blog/how-to-create-jenkins-multibranch-pipeline/#none"
           target="_blank"
           rel="noopener noreferrer"
         >
-          www.google.com
+          Jenkins Multibranch Pipeline
         </a>
         <a
           className="App-link"
